@@ -72,9 +72,9 @@ services:
 
         apache:
             container_name: apache-template
-                restart: always
-                ports:
-                    - '1111:80'
-                volumes:
-                    - './vidoe_template:/usr/local/apache2/htdocs/'
-                image: 'httpd:2.4'
+            restart: always
+            ports:
+                - '1111:80'
+            volumes:
+                - './vidoe_template:/usr/local/apache2/htdocs/'
+            image: 'httpd:2.4'
