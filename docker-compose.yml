@@ -9,7 +9,7 @@ services:
                 - POSTGRES_PASSWORD=pass_mcomet
             restart: always
             volumes:
-                - 'root/pgdata:/var/lib/postgresql/data'
+                - 'pgdata:/var/lib/postgresql/data'
             container_name: db
 
         web:
@@ -60,5 +60,5 @@ services:
             image: 'httpd:2.4'
 
 volumes:
-        /root/pgdata:
+        pgdata:
             external: true
