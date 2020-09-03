@@ -60,5 +60,5 @@ services:
             image: 'httpd:2.4'
 
 volumes:
-        pgdata:
+        /root/pgdata:
             external: true
