@@ -8,6 +8,8 @@ services:
                 - POSTGRES_USER=mcomet
                 - POSTGRES_PASSWORD=pass_mcomet
             restart: always
+            volumes:
+                - 'root/pgdata:/var/lib/postgresql/data'
             container_name: db
 
         web:
@@ -56,3 +58,7 @@ services:
             volumes:
                 - './vidoe_template:/usr/local/apache2/htdocs/'
             image: 'httpd:2.4'
+
+volumes:
+        pgdata:
+            external: true

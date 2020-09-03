@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+        db:
+            image: postgres
+            environment:
+                - POSTGRES_DB=hypertube
+                - POSTGRES_USER=mcomet
+                - POSTGRES_PASSWORD=pass_mcomet
+            restart: always
+            volumes:
+                - 'pgdata:/var/lib/postgresql/data'
+            container_name: db
+
+        web:
+            build: .
+            command: python manage.py runserver 0.0.0.0:8000
+            volumes:
+                - '.:/code'
+            ports:
+                -  "8000:8000"
+            depends_on:
+                - db
+            restart: always
+            container_name: web
+
+        adminer:
+            container_name: adminer
+            image: adminer
+            restart: always
+            ports:
+                - 8081:8080
+            depends_on:
+                - db
+volumes:
+        pgdata:
+            external: true
