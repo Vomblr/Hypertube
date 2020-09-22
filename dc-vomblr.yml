@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-        db:
+        db_hypertube:
             image: postgres
             environment:
                 - POSTGRES_DB=hypertube
@@ -10,7 +10,7 @@ services:
             restart: always
             volumes:
                 - 'pgdata:/var/lib/postgresql/data'
-            container_name: db
+            container_name: db_hypertube
 
         web:
             build: .
@@ -20,7 +20,7 @@ services:
             ports:
                 -  "8000:8000"
             depends_on:
-                - db
+                - db_hypertube
             restart: always
             container_name: web
 
@@ -31,7 +31,7 @@ services:
             ports:
                 - 8081:8080
             depends_on:
-                - db
+                - db_hypertube
 volumes:
         pgdata:
             external: true
